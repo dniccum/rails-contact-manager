@@ -1,14 +1,32 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>ContactManager</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <%= csrf_meta_tags %>
 
-<%= yield %>
+        <title><%= yield :pageTitle %> | Contact Manager</title>
 
-</body>
+        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    </head>
+    <body class="indigo accent-1">
+        <nav>
+            <div class="nav-wrapper blue darken-3">
+                <div class="container">
+                    <a href="#" class="brand-logo">Contacts</a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <% if false %>
+                        <li><a href="sass.html">Sass</a></li>
+                        <% else %>
+
+                        <% end %>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="holder">
+            <%= yield :body %>
+        </div>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    </body>
 </html>
