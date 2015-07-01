@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     get 'sign-up' => 'auth#get_sign_up'
 
     get 'sign-in' => 'auth#get_sign_in'
+    post 'sign-in' => 'auth#attempt_sign_in'
 
     #match ':controller(/:action(/:id))', :via => :get
 
