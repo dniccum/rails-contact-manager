@@ -10,16 +10,16 @@
                 <div class="row">
                     <div class="col s12">
                         <div class="card-panel white">
-                            <form>
+                            <%= form_tag(:action => 'attempt_sign_in') do %>
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <input name="email" id="email" type="email" class="validate">
+                                        <%= text_field_tag(:username, nil, class: 'validate') %>
                                         <label for="email">Email</label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <input name="password" id="password" type="password" class="validate">
+                                        <%= password_field_tag(:password, nil, class: 'validate') %>
                                         <label for="password">Password</label>
                                     </div>
                                 </div>
@@ -29,7 +29,7 @@
                                         </button>
                                     </div>
                                 </div>
-                            </form>
+                            <% end %>
                         </div>
                     </div>
                 </div>
