@@ -1,0 +1,25 @@
+{
+  "name": "RailsContactManager",
+  "version": "0.0.1",
+  "homepage": "https://github.com/dniccum/rails-contact-manager",
+  "authors": [
+    "Doug Niccum <dniccumdesign.com>"
+  ],
+  "description": "A basic contact manager with Rails.",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "materialize": "~0.97.0"
+  }
+}
