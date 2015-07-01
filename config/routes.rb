@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
     root 'welcome#index'
+    get 'sign-up' => 'auth#get_sign_up'
+
+    get 'sign-in' => 'auth#get_sign_in'
+
+    #match ':controller(/:action(/:id))', :via => :get
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
