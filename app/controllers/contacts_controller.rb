@@ -32,6 +32,25 @@ class ContactsController < ApplicationController
         render('edit')
     end
 
+    def update
+        @contact = Contact.find(params[:id])
+
+        if @contact.update_attributes(contact_params)
+            flash[:success] = "The contact '#{@contact.first_name} #{@contact.last_name}' has been updated."
+            redirect_to(:action => 'index')
+        else
+            flash[:notice] = "Please complete all fields."
+            render('edit')
+        end
+    end
+
+    def destroy
+        @contact = Contact.find(params[:id])
+        @contact.destroy
+        flash[:success] = "The contact '#{@contact.first_name} #{@contact.last_name}' has been deleted."
+        redirect_to(:action => 'index')
+    end
+
     private
 
         def contact_params
