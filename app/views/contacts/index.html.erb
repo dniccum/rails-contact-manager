@@ -13,12 +13,24 @@
                                 <tr>
                                     <th data-field="first_name">First Name</th>
                                     <th data-field="last_name">Last Name</th>
-                                    <th data-field="email">Email</th>
                                     <th data-field="company">Company</th>
+                                    <th style="text-align:center"><i class="material-icons">settings_applications</i></th>
                                 </tr>
                             </thead>
                             <tbody>
-
+                                <% @contacts.each do |contact| %>
+                                    <tr>
+                                        <td><%= contact.first_name %></td>
+                                        <td><%= contact.last_name %></td>
+                                        <td><%= contact.company %></td>
+                                        <td style="text-align:center">
+                                            <a class='dropdown-button btn' href='#' data-activates='dropdown<%= contact.id %>' data-hover="false">Actions</a>
+                                            <ul id='dropdown<%= contact.id %>' class='dropdown-content'>
+                                                <li><%= link_to("Edit", {action: "edit", id: contact.id}, :class => 'white-text amber') %></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                <% end %>
                             </tbody>
                         </table>
                     </div>
