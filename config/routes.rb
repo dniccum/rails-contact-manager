@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     post 'sign-in' => 'auth#attempt_sign_in'
 
     get 'contacts/create' => 'contacts#show_create'
+    post 'contacts/create' => 'contacts#create'
 
     match ':controller(/:action(/:id))', :via => :get
 
