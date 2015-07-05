@@ -59,4 +59,8 @@
 
 <% end %>
 
+<% content_for :errors do %>
+    <%= render "partials/contacts_errors" %>
+<% end %>
+
 <%= render template: "layouts/application" %>
