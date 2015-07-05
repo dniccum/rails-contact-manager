@@ -27,4 +27,6 @@ $('.delete-modal-trigger').click(function() {
     $('#contact-to-delete').val(id);
     $('#delete-modal span.name').text(name);
     $('#delete-modal').openModal();
+
+    return false;
 });
