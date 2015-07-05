@@ -15,3 +15,7 @@
 //= require turbolinks
 //= require_tree .
 //= require materialize/dist/js/materialize
+
+$(".dropdown-button").dropdown({
+    hover: true
+});
