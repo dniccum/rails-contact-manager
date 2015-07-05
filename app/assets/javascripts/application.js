@@ -19,3 +19,12 @@
 $(".dropdown-button").dropdown({
     hover: true
 });
+
+$('.delete-modal-trigger').click(function() {
+    var id = $(this).data('id');
+    var name = $(this).data('name');
+
+    $('#contact-to-delete').val(id);
+    $('#delete-modal span.name').text(name);
+    $('#delete-modal').openModal();
+});
