@@ -5,7 +5,9 @@ Rails.application.routes.draw do
     get 'sign-in' => 'auth#get_sign_in'
     post 'sign-in' => 'auth#attempt_sign_in'
 
-    #match ':controller(/:action(/:id))', :via => :get
+    get 'contacts/create' => 'contacts#show_create'
+
+    match ':controller(/:action(/:id))', :via => :get
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
