@@ -13,13 +13,13 @@
                             <%= form_tag(:action => 'attempt_sign_in') do %>
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <%= text_field_tag(:username, nil, class: 'validate') %>
+                                        <%= email_field(:email, nil, class: 'validate') %>
                                         <label for="email">Email</label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <%= password_field_tag(:password, nil, class: 'validate') %>
+                                        <%= password_field(:password, nil, class: 'validate') %>
                                         <label for="password">Password</label>
                                     </div>
                                 </div>
