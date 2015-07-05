@@ -10,31 +10,31 @@
                 <div class="row">
                     <div class="col s12">
                         <div class="card-panel white">
-                            <%= form_for(:user, :url => {:action => 'create_contact'}) do |f| %>
+                            <%= form_for(:user, :url => {:action => 'sign_up'}) do |f| %>
                                 <div class="row">
                                     <div class="input-field col s6">
                                         <%= f.text_field(:first_name, class: 'validate') %>
-                                        <label for="first_name">First Name</label>
+                                        <%= f.label :first_name %>
                                     </div>
                                     <div class="input-field col s6">
                                         <%= f.text_field(:last_name, class: 'validate') %>
-                                        <label for="last_name">Last Name</label>
+                                        <%= f.label :last_name %>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="input-field col s12">
                                         <%= f.email_field(:email, class: 'validate') %>
-                                        <label for="email">Email</label>
+                                        <%= f.label :email %>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="input-field col s6">
                                         <%= f.password_field(:password, class: 'validate') %>
-                                        <label for="password">Password</label>
+                                        <%= f.label :password %>
                                     </div>
                                     <div class="input-field col s6">
                                         <%= f.password_field(:password_confirmation, class: 'validate') %>
-                                        <label for="password">Password</label>
+                                        <label for="password_confirmation">Password Confirmation</label>
                                     </div>
                                 </div>
                                 <div class="row">
