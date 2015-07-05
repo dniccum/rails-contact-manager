@@ -22,7 +22,6 @@ class ContactsController < ApplicationController
             flash[:success] = "The contact '#{@contact.first_name} #{@contact.last_name}' has been created."
             redirect_to(:action => 'index')
         else
-            flash[:notice] = "Please complete all fields."
             render('create')
         end
     end
@@ -39,7 +38,6 @@ class ContactsController < ApplicationController
             flash[:success] = "The contact '#{@contact.first_name} #{@contact.last_name}' has been updated."
             redirect_to(:action => 'index')
         else
-            flash[:notice] = "Please complete all fields."
             render('edit')
         end
     end

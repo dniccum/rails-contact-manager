@@ -17,7 +17,6 @@ class AuthController < ApplicationController
             flash[:success] = "You are now signed up and logged in."
             redirect_to(:controller => 'contacts', :action => 'index')
         else
-            flash[:notice] = "Please complete all fields."
             render('sign-up')
         end
     end
