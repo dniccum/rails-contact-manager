@@ -3,6 +3,8 @@ class ContactsController < ApplicationController
     before_action :confirm_sign_in
 
     def index
+        @contacts = Contact.allContacts(session[:user_id]).byLastName
+
         render('index')
     end
 
@@ -14,6 +16,7 @@ class ContactsController < ApplicationController
 
     def create
         @contact = Contact.new(contact_params)
+        @contact.user_id = session[:user_id]
 
         if @contact.save
             flash[:success] = "The contact '#{@contact.first_name} #{@contact.last_name}' has been created."
@@ -22,6 +25,11 @@ class ContactsController < ApplicationController
             flash[:notice] = "Please complete all fields."
             render('create')
         end
+    end
+
+    def edit
+        @contact = Contact.find(params[:id])
+        render('edit')
     end
 
     private
