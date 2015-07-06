@@ -30,3 +30,49 @@ $('.delete-modal-trigger').click(function() {
 
     return false;
 });
+
+$('#clear-search').click(function() {
+	$('#contact-search').val('');
+	$('#clear-search').hide();
+	$('#contact-list').html(existingList);
+});
+
+$('#search_keywords').keyup(function() {
+	var value = $(this).val(),
+		visible = $('#clear-search').is(':visible');
+	if (value !== '' && !visible) {
+		$('#clear-search').fadeIn(100);
+	} else if (value === '' && visible) {
+		$('#clear-search').hide();
+	}
+
+	if (value.length >= 3) {
+
+		$.ajax().abort();
+
+		$.ajax({
+			type: 'get',
+			url: '/contacts/search?term=' + value,
+			success: function(response) {
+                console.log(response);
+				$('#contact-list').html('');
+				if (response.length >= 1) {
+					$.each(response, function(key, value) {
+						var newRow = '<tr data-id="' + value.id + '">' +
+							'<td>' + value.first_name + '</td>' +
+							'<td>' + value.last_name + '</td>' +
+							'<td>' + value.company + '</td>' +
+							'<td></td>' +
+						'</tr>';
+						$('#contact-list').append(newRow);
+					});
+				} else {
+					$('#contact-list').html('<tr class="no-results status"><td colspan="5">We could not find any results. Please note all searches are case-sensitive.</td></tr>');
+				}
+			}
+		});
+	} else {
+		// resets view
+		$('#contact-list').html(existingList);
+	}
+});
