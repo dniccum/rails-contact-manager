@@ -8,6 +8,12 @@ class ContactsController < ApplicationController
         render('index')
     end
 
+    def search_contact
+        query = params[:term]
+        @contacts = Contact.search(query)
+        render json: @contacts
+    end
+
     def show_create
         @contact = Contact.new
 
