@@ -50,10 +50,27 @@ class AuthController < ApplicationController
         redirect_to(:action => "get_sign_in")
     end
 
+    def show_profile
+        @user = User.find(session[:user_id])
+        render('profile')
+    end
+
+    def update_profile
+        @user = User.find(params[:user_id])
+
+        if @user.update_attributes(user_params)
+            flash[:success] = "Your profile has been successfully updated."
+            redirect_to(:action => "show_profile")
+        else
+            flash[:notice] = "Please complete all inputs."
+            redirect_to(:action => "show_profile")
+        end
+    end
+
     private
 
         def user_params
-            params.require(:user).permit(:first_name, :last_name, :email, :password)
+            params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
         end
 
 end
