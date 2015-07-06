@@ -23,7 +23,8 @@
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <% if session[:user_id] %>
                             <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Contacts<i class="material-icons right">arrow_drop_down</i></a></li>
-                            <li><%= link_to('Log Out', {:controller => 'auth', :action => 'logout'}) %></li>
+                            <li><%= link_to('Profile', {:controller => 'auth', :action => 'show_profile'}) %></li>
+                            <li class="active"><%= link_to('Log Out', {:controller => 'auth', :action => 'logout'}) %></li>
                         <% else %>
                             <li><%= link_to('Sign Up', {:controller => 'auth', :action => 'get_sign_up'}) %></li>
                             <li class="active"><%= link_to('Sign In', {:controller => 'auth', :action => 'get_sign_in'}) %></li>
