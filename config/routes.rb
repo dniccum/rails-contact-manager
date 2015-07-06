@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
     get 'contacts/create' => 'contacts#show_create'
     post 'contacts/create' => 'contacts#create'
+    get 'contacts/search' => 'contacts#search_contact'
 
     match ':controller(/:action(/:id))', :via => [:get, :post]
 
