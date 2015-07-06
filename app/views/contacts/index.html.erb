@@ -4,7 +4,19 @@
 <div class="container">
     <div class="row">
         <div class="col l12 m12 s12">
-            <h1 class="heading white-text" style="font-weight: 200;">All Contacts</h1>
+            <div class="row">
+                <div class="col l7 m12 s12">
+                    <h1 class="heading white-text" style="font-weight: 200;">All Contacts</h1>
+                </div>
+                <div class="col l5 m12 s12">
+                    <div class="card-panel white" style="margin-bottom: 0">
+                        <div class="input-field">
+                            <input type="search" name="search" id="search_keywords" />
+                            <label for="search_keywords">Search Keywords</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col s12">
                     <div class="card-panel white">
@@ -18,7 +30,7 @@
                                         <th style="text-align:center"><i class="material-icons">settings_applications</i></th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="contact-list">
                                     <% @contacts.each do |contact| %>
                                         <tr>
                                             <td><%= contact.first_name %></td>
@@ -49,6 +61,13 @@
 
 <%= render "partials/delete_modal" %>
 
+<% end %>
+
+<%= content_for :errors do %>
+    var existingList;
+    $(document).ready(function() {
+        existingList = $('#contact-list').html();
+    });
 <% end %>
 
 <%= render template: "layouts/application" %>
