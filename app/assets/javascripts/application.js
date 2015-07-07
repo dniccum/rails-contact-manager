@@ -46,7 +46,7 @@ $('#search_keywords').keyup(function() {
 		$('#clear-search').hide();
 	}
 
-	if (value.length >= 3) {
+	if (value.length >= 2) {
 
 		$.ajax().abort();
 
@@ -75,4 +75,34 @@ $('#search_keywords').keyup(function() {
 		// resets view
 		$('#contact-list').html(existingList);
 	}
+});
+
+$('.details-modal-trigger').click(function() {
+    var id = $(this).data('id');
+
+    $.ajax({
+        type: 'get',
+        url: '/contacts/details/' + id,
+        success: function(response) {
+            var name = response.first_name + ' ' + response.last_name;
+            var details = '<h5>Email</h5><p>' + response.email + '</p>';
+
+            if (response.company) {
+                details += '<h5>Company</h5><p>' + response.company + '</p>';
+            }
+            if (response.notes) {
+                var notes = response.notes.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                details += '<h5>Notes</h5><p>' + notes + '</p>';
+            }
+
+            $('#details-modal .name').text(name);
+            $('#details-modal .contact-details').html(details);
+            $('#details-modal').openModal();
+        },
+        error: function(error) {
+            Materialize.toast('There was a problem with your request.', 3000, 'red');
+        }
+    });
+
+    return false;
 });
