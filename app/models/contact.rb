@@ -13,6 +13,6 @@ class Contact < ActiveRecord::Base
     scope :byFirstName, lambda { order("contacts.first_name ASC") }
     scope :byCompany, lambda { order("contacts.company ASC") }
     scope :search, lambda { |query|
-        where(["first_name like ?", "%#{query}%"])
+        where(["first_name like ? OR last_name like ? OR company like ?", "%#{query}%", "%#{query}%", "%#{query}%"])
     }
 end
