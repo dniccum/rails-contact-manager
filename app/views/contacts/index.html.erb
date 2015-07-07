@@ -11,7 +11,7 @@
                 <div class="col l5 m12 s12">
                     <div class="card-panel white" style="margin-bottom: 0">
                         <div class="input-field">
-                            <input type="search" name="search" id="search_keywords" />
+                            <input type="text" name="search" id="search_keywords" />
                             <label for="search_keywords">Search Keywords</label>
                         </div>
                     </div>
@@ -39,6 +39,7 @@
                                             <td style="text-align:center">
                                                 <a class='dropdown-button btn blue' href='#' data-activates='dropdown<%= contact.id %>' data-hover="false">Actions</a>
                                                 <ul id='dropdown<%= contact.id %>' class='dropdown-content'>
+                                                    <li><%= link_to("View Details", '#', :class => 'white-text blue darken-3 details-modal-trigger', :data => {:id => contact.id}) %></li>
                                                     <li><%= link_to("Edit", {action: "edit", id: contact.id}, :class => 'white-text amber') %></li>
                                                     <li><%= link_to("Delete", '#', :class => 'white-text red delete-modal-trigger', :data => {:id => contact.id, :name => "#{contact.first_name} #{contact.last_name}"}) %></li>
                                                 </ul>
@@ -60,6 +61,17 @@
 </div>
 
 <%= render "partials/delete_modal" %>
+
+<!-- contact detail modal -->
+<div id="details-modal" class="modal">
+    <div class="modal-content">
+        <h4 class="name"></h4>
+        <div class="contact-details"></div>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-light btn blue">OK</a>
+    </div>
+</div>
 
 <% end %>
 
