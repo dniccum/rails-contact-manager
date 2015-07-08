@@ -11,7 +11,7 @@
 
         <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     </head>
-    <body class="indigo accent-1">
+    <body class="indigo accent-1 <%= yield :bodyClass %>">
         <ul id="dropdown1" class="dropdown-content">
             <li><%= link_to('View Contacts', {:controller => 'contacts', :action => 'index'}) %></li>
             <li><%= link_to('Add Contact', {:controller => 'contacts', :action => 'show_create'}) %></li>
