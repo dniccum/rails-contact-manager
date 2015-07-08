@@ -10,7 +10,7 @@
                 <div class="row">
                     <div class="col s12">
                         <div class="card-panel white">
-                            <%= form_for(:contact, :url => {:action => 'update', :id => @contact.id}) do |f| %>
+                            <%= form_for(:contact, :url => {:action => 'update', :id => @contact.id}, multipart: true) do |f| %>
                                 <div class="row">
                                     <div class="input-field col s12">
                                         <%= f.text_field(:first_name, class: 'validate') %>
@@ -41,6 +41,29 @@
                                         <label for="notes">Notes</label>
                                     </div>
                                 </div>
+
+                                <hr class="divider" />
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <h4>Photo Upload</h4>
+                                        <p>Select a photo that will be associated with this contact.</p>
+                                        <div class="file-field input-field">
+                                            <div class="btn">
+                                                <span>Select Image</span>
+                                                <%= f.file_field :image %>
+                                            </div>
+                                            <div class="file-path-wrapper">
+                                                <input type="text" class="file-path validate" />
+                                            </div>
+                                        </div>
+                                        <% if @contact.image %>
+                                            <h5>Existing Image</h5>
+                                            <%= image_tag(@contact.image_url(:thumb), :class => 'circle responsive-img') %>
+                                        <% end %>
+                                    </div>
+                                </div>
+                                <hr class="divider" style="margin-bottom: 50px;"/>
+
                                 <div class="row">
                                     <div class="col s12">
                                         <button class="btn waves-effect waves-light blue" type="submit" name="action">Submit
