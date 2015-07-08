@@ -20,6 +20,8 @@ $(".dropdown-button").dropdown({
     hover: true
 });
 
+$('.modal-trigger').leanModal();
+
 $('.delete-modal-trigger').click(function() {
     var id = $(this).data('id');
     var name = $(this).data('name');
@@ -85,7 +87,11 @@ $('.details-modal-trigger').click(function() {
         url: '/contacts/details/' + id,
         success: function(response) {
             var name = response.first_name + ' ' + response.last_name;
-            var details = '<h5>Email</h5><p>' + response.email + '</p>';
+            if (response.image) {
+                var details = '<div class="row"><div class="col l3 m4 s12"><img class="circle responsive-img" src="' + response.image.url + '" /></div><div class="col l9 m8 s12"><h5>Email</h5><p>' + response.email + '</p>';
+            } else {
+                var details = '<h5>Email</h5><p>' + response.email + '</p>';
+            }
 
             if (response.company) {
                 details += '<h5>Company</h5><p>' + response.company + '</p>';
@@ -93,6 +99,9 @@ $('.details-modal-trigger').click(function() {
             if (response.notes) {
                 var notes = response.notes.replace(/(?:\r\n|\r|\n)/g, '<br />');
                 details += '<h5>Notes</h5><p>' + notes + '</p>';
+            }
+            if (response.image) {
+                details += '</div></div>';
             }
 
             $('#details-modal .name').text(name);
