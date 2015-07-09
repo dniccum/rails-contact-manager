@@ -3,7 +3,11 @@ class ContactsController < ApplicationController
     before_action :confirm_sign_in
 
     def index
-        @contacts = Contact.allContacts(session[:user_id]).byLastName
+        if params[:sort]
+            @contacts = Contact.allContacts(session[:user_id]).order("#{params[:sort]} #{params[:direction].upcase}")
+        else
+            @contacts = Contact.allContacts(session[:user_id]).byLastName
+        end
 
         render('index')
     end
