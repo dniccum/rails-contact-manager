@@ -25,3 +25,11 @@ hr.divider {
 		max-width: 100%;
 	}
 }
+
+th.sort {
+	cursor: pointer;
+
+	&:hover {
+		background-color: #ededed;
+	}
+}
