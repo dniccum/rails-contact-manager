@@ -24,9 +24,36 @@
                             <table>
                                 <thead>
                                     <tr>
-                                        <th data-field="first_name">First Name</th>
-                                        <th data-field="last_name">Last Name</th>
-                                        <th data-field="company">Company</th>
+                                        <th data-sort="first_name" class="sort <% if params[:sort] == 'first_name' %><%= params[:direction] %><% end %>">
+                                            First Name
+                                            <% if params[:sort] == 'first_name' %>
+                                                <% if params[:direction] == 'asc' %>
+                                                    <i class="ion-arrow-up-b"></i>
+                                                <% else %>
+                                                    <i class="ion-arrow-down-b"></i>
+                                                <% end %>
+                                            <% end %>
+                                        </th>
+                                        <th data-sort="last_name" class="sort <% if params[:sort] == 'last_name' %><%= params[:direction] %><% end %>">
+                                            Last Name
+                                            <% if params[:sort] == 'last_name' %>
+                                                <% if params[:direction] == 'asc' %>
+                                                    <i class="ion-arrow-up-b"></i>
+                                                <% else %>
+                                                    <i class="ion-arrow-down-b"></i>
+                                                <% end %>
+                                            <% end %>
+                                        </th>
+                                        <th data-sort="company" class="sort <% if params[:sort] == 'last_name' %><%= params[:direction] %><% end %>">
+                                            Company
+                                            <% if params[:sort] == 'company' %>
+                                                <% if params[:direction] == 'asc' %>
+                                                    <i class="ion-arrow-up-b"></i>
+                                                <% else %>
+                                                    <i class="ion-arrow-down-b"></i>
+                                                <% end %>
+                                            <% end %>
+                                        </th>
                                         <th style="text-align:center"><i class="material-icons">settings_applications</i></th>
                                     </tr>
                                 </thead>
