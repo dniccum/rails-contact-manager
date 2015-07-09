@@ -55,6 +55,7 @@ class AuthController < ApplicationController
     end
 
     def logout
+        cookies.delete :auth_token
         session[:user_id] = nil
         session[:email] = nil
         flash[:success] = "Logged out"
