@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     get 'contacts/search' => 'contacts#search_contact'
     get 'contacts/details/:id' => 'contacts#details'
 
+    resources :password_resets
+
     match ':controller(/:action(/:id))', :via => [:get, :post]
 
   # The priority is based upon order of creation: first created -> highest priority.
