@@ -22,7 +22,7 @@ $(".dropdown-button").dropdown({
 
 $('.modal-trigger').leanModal();
 
-$('.delete-modal-trigger').click(function() {
+$('body').on('click', '.delete-modal-trigger', function() {
     var id = $(this).data('id');
     var name = $(this).data('name');
 
@@ -31,12 +31,6 @@ $('.delete-modal-trigger').click(function() {
     $('#delete-modal').openModal();
 
     return false;
-});
-
-$('#clear-search').click(function() {
-	$('#contact-search').val('');
-	$('#clear-search').hide();
-	$('#contact-list').html(existingList);
 });
 
 $('#search_keywords').keyup(function() {
@@ -64,9 +58,15 @@ $('#search_keywords').keyup(function() {
 							'<td>' + value.first_name + '</td>' +
 							'<td>' + value.last_name + '</td>' +
 							'<td>' + value.company + '</td>' +
-							'<td></td>' +
-						'</tr>';
+							'<td style="text-align:center"><a class="dropdown-button btn blue" href="#" data-activates="dropdown' + value.id + '" data-hover="false">Actions</a>' +
+                                '<ul id="dropdown' + value.id + '" class="dropdown-content">' +
+                                    '<li><a href="#" class="white-text blue darken-3 details-modal-trigger" data-id="' + value.id + '">View Details</a></li>' +
+                                    '<li><a href="/contacts/edit/' + value.id + '" class="white-text amber">Edit</a></li>' +
+                                    '<li><a href="#" class="white-text red delete-modal-trigger" data-id="' + value.id + '" data-name="' + value.first_name + ' ' + value.last_name + '">Delete</a></li>' +
+                                '</ul>' +
+						'</td></tr>';
 						$('#contact-list').append(newRow);
+                        $(".dropdown-button").dropdown();
 					});
 				} else {
 					$('#contact-list').html('<tr class="no-results status"><td colspan="5">We could not find any results. Please note all searches are case-sensitive.</td></tr>');
@@ -76,10 +76,11 @@ $('#search_keywords').keyup(function() {
 	} else {
 		// resets view
 		$('#contact-list').html(existingList);
+        $(".dropdown-button").dropdown();
 	}
 });
 
-$('.details-modal-trigger').click(function() {
+$('body').on('click', '.details-modal-trigger', function() {
     var id = $(this).data('id');
 
     $.ajax({
