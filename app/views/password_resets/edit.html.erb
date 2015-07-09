@@ -11,7 +11,7 @@
                     <div class="col s12">
                         <div class="card-panel white">
                             <p>To complete your password reset, enter your new password below.</p>
-                            <%= form_for @user, :url => password_reset_path(params[:id]) do |f| %>
+                            <%= form_for :user, :url => password_reset_path(params[:id]) do |f| %>
                                 <div class="row">
                                     <div class="input-field col s12">
                                         <%= f.password_field(:password, class: 'validate') %>
