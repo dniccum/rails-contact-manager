@@ -22,7 +22,13 @@ class AuthController < ApplicationController
     end
 
     def get_sign_in
-        render('sign-in')
+
+        if session[:user_id]
+            flash[:notice] = "You are already logged in."
+            redirect_to(:controller => 'contacts', :action => 'index')
+        else
+            render('sign-in')
+        end
     end
 
     def attempt_sign_in
