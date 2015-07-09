@@ -33,6 +33,11 @@ class AuthController < ApplicationController
             end
         end
         if authorized_user
+            if params[:remember_me]
+                cookies.permanent[:auth_token] = authorized_user.auth_token
+            else
+                cookies[:auth_token] = authorized_user.auth_token
+            end
             session[:user_id] = authorized_user.id
             session[:email] = authorized_user.email
             flash[:success] = "You are now logged in."
