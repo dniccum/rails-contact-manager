@@ -22,6 +22,8 @@ $(".dropdown-button").dropdown({
 
 $('.modal-trigger').leanModal();
 
+$(".button-collapse").sideNav();
+
 $('body').on('click', '.delete-modal-trigger', function() {
     var id = $(this).data('id');
     var name = $(this).data('name');
