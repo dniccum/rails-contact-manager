@@ -1,0 +1,48 @@
+<% content_for :pageTitle do %>Reset Password<% end %>
+
+<% content_for :body do %>
+
+<div class="home-block main indigo accent-1">
+    <div class="container">
+        <div class="row">
+            <div class="col offset-l3 l6 offset-m1 m10 s12">
+                <h1 class="heading white-text" style="font-weight: 200;">Reset Password</h1>
+                <div class="row">
+                    <div class="col s12">
+                        <div class="card-panel white">
+                            <p>To complete your password reset, enter your new password below.</p>
+                            <%= form_for @user, :url => password_reset_path(params[:id]) do |f| %>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <%= f.password_field(:password, class: 'validate') %>
+                                        <%= f.label :password %>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <%= f.password_field(:password_confirmation, class: 'validate') %>
+                                        <label for="password_confirmation">Password Confirmation</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col s12">
+                                        <button class="btn waves-effect waves-light blue" type="submit" name="action">Update Password
+                                        </button>
+                                    </div>
+                                </div>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% end %>
+
+<% content_for :errors do %>
+    <%= render "partials/user_errors" %>
+<% end %>
+
+<%= render template: "layouts/application" %>
