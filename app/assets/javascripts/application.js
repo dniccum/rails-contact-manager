@@ -44,6 +44,8 @@ $('#search_keywords').keyup(function() {
 
 	if (value.length >= 2) {
 
+        $('table th i').hide();
+
 		$.ajax().abort();
 
 		$.ajax({
@@ -75,6 +77,7 @@ $('#search_keywords').keyup(function() {
 		});
 	} else {
 		// resets view
+        $('table th i').show();
 		$('#contact-list').html(existingList);
         $(".dropdown-button").dropdown();
 	}
@@ -115,4 +118,19 @@ $('body').on('click', '.details-modal-trigger', function() {
     });
 
     return false;
+});
+
+$('th.sort').click(function() {
+	var data = $(this).data('sort');
+	var up = $(this).hasClass('asc');
+	var down = $(this).hasClass('desc');
+	var url = '//' + location.host + location.pathname;
+
+	if (up) {
+		window.location =  url + '?sort=' + data + '&direction=desc';
+	} else if (down) {
+		window.location = url;
+	} else {
+		window.location =  url + '?sort=' + data + '&direction=asc';
+	}
 });
