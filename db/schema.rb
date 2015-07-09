@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150709005232) do
+ActiveRecord::Schema.define(version: 20150709013954) do
 
   create_table "contacts", force: :cascade do |t|
     t.string   "first_name", limit: 50,  null: false
@@ -28,13 +28,15 @@ ActiveRecord::Schema.define(version: 20150709005232) do
   add_index "contacts", ["user_id"], name: "index_contacts_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "first_name",      limit: 25,  null: false
-    t.string   "last_name",       limit: 50,  null: false
-    t.string   "email",           limit: 255, null: false
-    t.string   "password_digest", limit: 255
+    t.string   "first_name",             limit: 25,  null: false
+    t.string   "last_name",              limit: 50,  null: false
+    t.string   "email",                  limit: 255, null: false
+    t.string   "password_digest",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "auth_token",      limit: 255
+    t.string   "auth_token",             limit: 255
+    t.string   "password_reset_token",   limit: 255
+    t.datetime "password_reset_sent_at"
   end
 
 end
