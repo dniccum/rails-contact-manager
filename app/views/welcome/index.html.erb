@@ -1,0 +1,29 @@
+<% content_for :pageTitle do %>A Simple Contact Manager <% end %>
+
+<% content_for :body do %>
+
+<div class="home-block main indigo accent-1">
+    <div class="container">
+        <div class="row">
+            <div class="col l12 m12 sm12">
+                <h1 class="center-align heading white-text" style="font-weight: 200;">Contact This</h1>
+                <div class="row">
+                    <div class="col l6 offset-l3 m6 offset-m3 s10 offset-s1">
+                        <div class="card-panel action-card blue darken-3">
+                            <h5 class="white-text center-align" style="font-weight: 200; margin-bottom: 30px;">Get your account now.</h5>
+                            <div class="row">
+                                <div class="col l8 offset-l2 m8 offset-m2 s8 offset-s2 center-align">
+                                    <a href="/sign-up" class="waves-effect waves-light btn-large blue"><i class="mdi-content-create left"></i>Sign Up</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% end %>
+
+<%= render template: "layouts/application" %>
