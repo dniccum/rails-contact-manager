@@ -14,7 +14,7 @@ class ContactsController < ApplicationController
 
     def search_contact
         query = params[:term]
-        @contacts = Contact.allContacts(session[:user_id]).search(query)
+        @contacts = Contact.allContacts(current_user.id).search(query)
         render json: @contacts
     end
 
