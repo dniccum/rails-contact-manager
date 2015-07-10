@@ -10,6 +10,7 @@ This is a basic contact manager built on top of Ruby on Rails.
 * Create a contact
 * Upload an image associated with a contact
 * Quickly and dynamically search through the contacts
+* Sort contacts by first name, last name, or company
 
 ### Third-Party Packages
 
