@@ -1,28 +1,27 @@
-== README
+# Contact Manager
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a basic contact manager built on top of Ruby on Rails.
 
-Things you may want to cover:
+### Features
 
-* Ruby version
+* User creation
+* User authentication
+* User password reset
+* Create a contact
+* Upload an image associated with a contact
+* Quickly and dynamically search through the contacts
 
-* System dependencies
+### Third-Party Packages
 
-* Configuration
+* [Devise](https://github.com/plataformatec/devise)
+* [CarrierWave](https://github.com/carrierwaveuploader/carrierwave)
 
-* Database creation
+### For Setup
 
-* Database initialization
+#### Bower
 
-* How to run the test suite
+This project utilizes [Bower](http://bower.io/) for all front-end asset management. Before running, enter `bower install` to install all of the necessary assets.
 
-* Services (job queues, cache servers, search engines, etc.)
+#### Database
 
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+This project is currently configured to use MYSQL.
