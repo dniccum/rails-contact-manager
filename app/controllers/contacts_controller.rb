@@ -1,12 +1,12 @@
 class ContactsController < ApplicationController
 
-    before_action :confirm_sign_in
+    before_action :authenticate_user!
 
     def index
         if params[:sort]
-            @contacts = Contact.allContacts(session[:user_id]).order("#{params[:sort]} #{params[:direction].upcase}")
+            @contacts = Contact.allContacts(current_user.id).order("#{params[:sort]} #{params[:direction].upcase}")
         else
-            @contacts = Contact.allContacts(session[:user_id]).byLastName
+            @contacts = Contact.allContacts(current_user.id).byLastName
         end
 
         render('index')
@@ -31,10 +31,10 @@ class ContactsController < ApplicationController
 
     def create
         @contact = Contact.new(contact_params)
-        @contact.user_id = session[:user_id]
+        @contact.user_id = current_user.id
 
         if @contact.save
-            flash[:success] = "The contact '#{@contact.first_name} #{@contact.last_name}' has been created."
+            flash[:notice] = "The contact '#{@contact.first_name} #{@contact.last_name}' has been created."
             redirect_to(:action => 'index')
         else
             render('create')
@@ -50,7 +50,7 @@ class ContactsController < ApplicationController
         @contact = Contact.find(params[:id])
 
         if @contact.update_attributes(contact_params)
-            flash[:success] = "The contact '#{@contact.first_name} #{@contact.last_name}' has been updated."
+            flash[:notice] = "The contact '#{@contact.first_name} #{@contact.last_name}' has been updated."
             redirect_to(:action => 'index')
         else
             render('edit')
@@ -60,7 +60,7 @@ class ContactsController < ApplicationController
     def destroy
         @contact = Contact.find(params[:id])
         @contact.destroy
-        flash[:success] = "The contact '#{@contact.first_name} #{@contact.last_name}' has been deleted."
+        flash[:notice] = "The contact '#{@contact.first_name} #{@contact.last_name}' has been deleted."
         redirect_to(:action => 'index')
     end
 
