@@ -1,18 +1,22 @@
 Rails.application.routes.draw do
+    devise_for :users, :path => '',
+        :controllers => {
+            registrations: 'auth'
+        },
+        :path_names => {
+            :sign_in => "sign-in",
+            :sign_out => "logout",
+            :sign_up => "sign-up",
+            :edit => "profile"
+        }
+
     root 'welcome#index'
-    get 'sign-up' => 'auth#get_sign_up'
-    post 'sign-up' => 'auth#sign_up'
-    get 'profile' => 'auth#show_profile'
 
-    get 'sign-in' => 'auth#get_sign_in'
-    post 'sign-in' => 'auth#attempt_sign_in'
-
+    get 'contacts' => 'contacts#index'
     get 'contacts/create' => 'contacts#show_create'
     post 'contacts/create' => 'contacts#create'
     get 'contacts/search' => 'contacts#search_contact'
     get 'contacts/details/:id' => 'contacts#details'
-
-    resources :password_resets
 
     match ':controller(/:action(/:id))', :via => [:get, :post]
 
