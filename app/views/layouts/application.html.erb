@@ -12,7 +12,7 @@
         <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     </head>
     <body class="indigo accent-1 <%= yield :bodyClass %>">
-        <ul id="dropdown1" class="dropdown-content">
+        <ul id="dropdownNav" class="dropdown-content">
             <li><%= link_to('View Contacts', {:controller => 'contacts', :action => 'index'}) %></li>
             <li><%= link_to('Add Contact', {:controller => 'contacts', :action => 'show_create'}) %></li>
         </ul>
@@ -22,24 +22,24 @@
                     <a href="/" class="brand-logo">Contacts</a>
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <% if session[:user_id] %>
-                            <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Contacts<i class="material-icons right">arrow_drop_down</i></a></li>
-                            <li><%= link_to('Profile', {:controller => 'auth', :action => 'show_profile'}) %></li>
-                            <li class="active"><%= link_to('Log Out', {:controller => 'auth', :action => 'logout'}) %></li>
+                        <% if user_signed_in? %>
+                            <li><a class="dropdown-button" href="#!" data-activates="dropdownNav">Contacts<i class="material-icons right">arrow_drop_down</i></a></li>
+                            <li><%= link_to('Profile', {:controller => 'auth', :action => 'edit'}) %></li>
+                            <li class="active"><%= link_to('Log Out', destroy_user_session_path, :method => :delete ) %></li>
                         <% else %>
-                            <li><%= link_to('Sign Up', {:controller => 'auth', :action => 'get_sign_up'}) %></li>
-                            <li class="active"><%= link_to('Sign In', {:controller => 'auth', :action => 'get_sign_in'}) %></li>
+                            <li><%= link_to('Sign Up', '/sign-up') %></li>
+                            <li class="active"><%= link_to('Sign In', '/sign-in') %></li>
                         <% end %>
                     </ul>
                     <ul class="side-nav" id="mobile-demo">
-                        <% if session[:user_id] %>
+                        <% if user_signed_in? %>
                             <li><%= link_to('View Contacts', {:controller => 'contacts', :action => 'index'}) %></li>
                             <li><%= link_to('Add Contact', {:controller => 'contacts', :action => 'show_create'}) %></li>
-                            <li><%= link_to('Profile', {:controller => 'auth', :action => 'show_profile'}) %></li>
-                            <li class="active"><%= link_to('Log Out', {:controller => 'auth', :action => 'logout'}) %></li>
+                            <li><%= link_to('Profile', {:controller => 'auth', :action => 'edit'}) %></li>
+                            <li class="active"><%= link_to('Log Out', destroy_user_session_path, :method => :delete ) %></li>
                         <% else %>
-                            <li><%= link_to('Sign Up', {:controller => 'auth', :action => 'get_sign_up'}) %></li>
-                            <li class="active"><%= link_to('Sign In', {:controller => 'auth', :action => 'get_sign_in'}) %></li>
+                            <li><%= link_to('Sign Up', '/sign-up') %></li>
+                            <li class="active"><%= link_to('Sign In', '/sign-in') %></li>
                         <% end %>
                     </ul>
                 </div>
@@ -51,11 +51,11 @@
         <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
         <script type="text/javascript">
-            <% if !flash[:notice].blank? %>
-                Materialize.toast('<%= flash[:notice] %>', 3000, 'red');
+            <% if !flash[:alert].blank? %>
+                Materialize.toast('<%= flash[:alert] %>', 3000, 'red');
             <% end %>
-            <% if !flash[:success].blank? %>
-                Materialize.toast('<%= flash[:success] %>', 3000, 'green');
+            <% if !flash[:notice].blank? %>
+                Materialize.toast('<%= flash[:notice] %>', 3000, 'green');
             <% end %>
 
             <%= yield :errors %>
